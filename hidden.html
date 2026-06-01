@@ -1,29 +1,30 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>مخفي — عربي · إنجليزي</title>
+    <title>Hidden — Arabic · English</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <main class="app">
       <header class="header headerCompact">
-        <h1 class="title titleCenter" lang="ar">البطاقات المخفية</h1>
-        <p class="subtitle subtitleTight desktopOnlyControl" lang="ar">
-          البطاقات التي أخفيتها تظهر هنا. افتح القائمة واستخدم <strong>استرجاع</strong> لإرجاع أي بطاقة.
+        <h1 class="title titleCenter">Hidden cards</h1>
+        <p class="subtitle subtitleTight desktopOnlyControl">
+          Cards you hid from your decks appear here. Open a list and use <strong>Retrieve</strong> to restore any
+          card.
         </p>
         <div class="hiddenHub">
-          <a class="hiddenHubCard btn ghost" href="./hidden-words.html" lang="ar">
-            <span class="hiddenHubTitle">مفردات مخفية</span>
-            <span class="hiddenHubMeta muted"><span id="countWords">0</span> مخفي</span>
+          <a class="hiddenHubCard btn ghost" href="./hidden-words.html">
+            <span class="hiddenHubTitle">Hidden vocabulary</span>
+            <span class="hiddenHubMeta muted"><span id="countWords">0</span> hidden</span>
           </a>
-          <a class="hiddenHubCard btn ghost" href="./hidden-sentences.html" lang="ar">
-            <span class="hiddenHubTitle">جمل مخفية</span>
-            <span class="hiddenHubMeta muted"><span id="countSentences">0</span> مخفي</span>
+          <a class="hiddenHubCard btn ghost" href="./hidden-sentences.html">
+            <span class="hiddenHubTitle">Hidden sentences</span>
+            <span class="hiddenHubMeta muted"><span id="countSentences">0</span> hidden</span>
           </a>
         </div>
-        <nav class="stats statsRow" data-ar-nav data-ar-nav-current="hidden" aria-label="القائمة الرئيسية"></nav>
+        <nav class="stats statsRow" data-site-nav data-site-nav-current="hidden" aria-label="Navigation"></nav>
       </header>
     </main>
     <script src="./hidden-hub.js" defer></script>

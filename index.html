@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>بطاقات عربي · إنجليزي</title>
+    <title>Arabic · English Flashcards</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,19 +15,19 @@
   <body class="deckPage">
     <main class="app">
       <header class="header headerCompact">
-        <h1 class="title titleCenter" lang="ar">بطاقات عربي · إنجليزي</h1>
-        <div class="phraseToolbar deckToolbar" aria-label="المجموعة">
+        <h1 class="title titleCenter">Arabic · English Flashcards</h1>
+        <div class="phraseToolbar deckToolbar" aria-label="Deck">
           <div class="stats phraseToolbar-stats">
             <div class="stat">
-              <div class="statLabel" lang="ar">في المجموعة</div>
+              <div class="statLabel">In deck</div>
               <div class="statValue" id="statDeck">—</div>
             </div>
-            <a class="stat statLink" href="./saved.html" title="البطاقات المحفوظة">
-              <div class="statLabel" lang="ar">محفوظ</div>
+            <a class="stat statLink" href="./saved.html" title="Open saved vocabulary deck">
+              <div class="statLabel">Saved</div>
               <div class="statValue" id="statSaved">—</div>
             </a>
-            <a class="stat statLink" href="./hidden.html" title="البطاقات المخفية">
-              <div class="statLabel" lang="ar">مخفي</div>
+            <a class="stat statLink" href="./hidden.html" title="View or restore hidden cards">
+              <div class="statLabel">Hidden</div>
               <div class="statValue" id="statRemoved">—</div>
             </a>
           </div>
@@ -35,28 +35,26 @@
             <div class="phraseToolbar-actionsInner">
               <nav
                 class="phraseToolbar-nav"
-                data-ar-nav
-                data-ar-nav-current="home"
-                aria-label="أوضاع الدراسة"
+                data-site-nav
+                data-site-nav-current="home"
+                aria-label="Study modes"
               ></nav>
-              <nav class="phraseToolbar-nav" aria-label="إجراءات">
+              <nav class="phraseToolbar-nav" aria-label="Deck actions">
                 <button
                   class="btn ghost btnSm phraseToolbar-navBtn"
                   id="saveBtn"
                   type="button"
-                  title="اختصار: S"
-                  lang="ar"
+                  title="Keyboard shortcut: S"
                 >
-                  حفظ
+                  Save
                 </button>
                 <button
                   class="btn danger btnSm phraseToolbar-navBtn"
                   id="hideCardBtn"
                   type="button"
-                  title="إخفاء من المجموعة في هذا المتصفح"
-                  lang="ar"
+                  title="Remove from deck on this browser"
                 >
-                  إخفاء
+                  Hide card
                 </button>
               </nav>
             </div>
@@ -65,8 +63,8 @@
       </header>
 
       <section class="stage">
-        <section class="panel studyPanel" aria-label="دراسة">
-          <div class="studyRow" role="group" aria-label="موضوع والبطاقة">
+        <section class="panel studyPanel" aria-label="Study">
+          <div class="studyRow" role="group" aria-label="Topic and card controls">
             <div class="studyControlBar">
               <div class="topicDrop" id="topicDrop">
                 <button
@@ -77,24 +75,19 @@
                   aria-expanded="false"
                   aria-controls="topicDropMenu"
                 >
-                  <span class="topicDropBtnText" id="topicDropLabel" lang="ar">كل البطاقات</span>
+                  <span class="topicDropBtnText" id="topicDropLabel">All cards</span>
                   <span class="topicDropChev" aria-hidden="true">▾</span>
                 </button>
                 <div
                   class="topicDropMenu"
                   id="topicDropMenu"
                   role="listbox"
-                  aria-label="اختر موضوعاً"
+                  aria-label="Choose a topic"
                   hidden
                 ></div>
               </div>
-              <button
-                type="button"
-                class="btn navBtn primary studyFlipBtn desktopOnlyControl"
-                id="stepBtn"
-                lang="ar"
-              >
-                اقلب ▸
+              <button type="button" class="btn navBtn primary studyFlipBtn desktopOnlyControl" id="stepBtn">
+                Flip ▸
               </button>
             </div>
           </div>
@@ -104,28 +97,28 @@
               type="button"
               class="flashcardHit"
               id="flashcardHit"
-              aria-label="البطاقة — اضغط للقلب"
+              aria-label="Flashcard — click to flip"
             >
               <div class="flashcard3d">
                 <div class="flashcardInner" id="flashcardInner">
                   <div class="flashFace flashFaceFront">
-                    <span class="flashLabel" lang="ar">عربي</span>
+                    <span class="flashLabel">Arabic</span>
                     <p class="flashWord flashWordAr" id="textAr">—</p>
                     <span class="flashCornerTag" id="deckTag">—</span>
                   </div>
                   <div class="flashFace flashFaceBack">
-                    <span class="flashLabel" lang="en" dir="ltr">English</span>
-                    <p class="flashWord" id="textEnBack" dir="ltr">—</p>
+                    <span class="flashLabel">English</span>
+                    <p class="flashWord" id="textEnBack">—</p>
                   </div>
                 </div>
               </div>
             </button>
           </div>
 
-          <p class="deckHelpNote muted" lang="ar">
-            قلب: نقرة أو <kbd>←</kbd> · التالي: <kbd>→</kbd> · حفظ: <kbd>S</kbd> · إخفاء:
-            <kbd>Delete</kbd> أو زر إخفاء. للمراجعة والحذف:
-            <a class="muted inlineLink" href="./curate.html">مراجعة الكلمات</a>.
+          <p class="deckHelpNote muted">
+            Flip: tap or <kbd>←</kbd> · Next: <kbd>→</kbd> · Save: <kbd>S</kbd> · Hide:
+            <kbd>Delete</kbd>. Review all words:
+            <a class="muted inlineLink" href="./curate.html">Review words</a>.
           </p>
 
           <div class="miniHelp" id="toastBar">

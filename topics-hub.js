@@ -104,7 +104,7 @@
     if (intro) {
       if (ready) {
         intro.textContent =
-          "المواضيع مرتبة أدناه — كل موضوع يفتح مجموعة كلماته فقط.";
+          "المواضيع مرتبة أدناه — اضغط موضوعاً لدراسة كلماته فقط.";
         intro.setAttribute("lang", "ar");
         intro.setAttribute("dir", "rtl");
       } else {

@@ -25,9 +25,7 @@
   }
   document.title = `${topicLabel} · Arabic · English`;
   if (sub) {
-    sub.setAttribute("lang", "ar");
-    sub.setAttribute("dir", "rtl");
-    sub.innerHTML = `دراسة <strong>${escapeAttr(topicLabel)}</strong> فقط — المجموعة الكاملة على <a class="muted inlineLink" href="./index.html">البطاقات الرئيسية</a>.`;
+    sub.innerHTML = `Studying <strong lang="ar" dir="rtl">${escapeAttr(topicLabel)}</strong> only. Full deck unchanged on <a class="muted inlineLink" href="./index.html">Main deck</a>.`;
   }
 
   function escapeAttr(s) {
