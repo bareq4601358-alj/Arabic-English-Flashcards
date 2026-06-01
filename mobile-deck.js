@@ -1,7 +1,8 @@
 /**
- * Touch: horizontal swipe on the flashcard (same as keyboard arrows).
- * Swipe right → same as Next (flip to Arabic, then next card). Swipe left → flip only.
- * Only active on small viewports or coarse pointers so desktop mouse is unchanged.
+ * Mobile / touch:
+ * - Tap card: 1st tap → flip to English; 2nd tap → next card (same as Flip/Next button).
+ * - Swipe right → next step; swipe left → flip back (flip-only control).
+ * Desktop click on the card still toggles flip only (unchanged).
  *
  * Also: after switching browser tabs, some engines mis-paint 3D flip cards (transparent faces).
  * A tiny layout read nudges a clean repaint (runs on all viewports).
@@ -39,6 +40,23 @@
 
   if (!shouldEnableGestures()) return;
 
+  hit.setAttribute(
+    "aria-label",
+    "Flashcard — tap to flip, tap again for next card"
+  );
+
+  // Capture phase so page handlers (toggle flip) do not run on mobile.
+  hit.addEventListener(
+    "click",
+    (e) => {
+      if (hit.disabled) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      nextTarget.click();
+    },
+    true
+  );
+
   let startX = 0;
   let startY = 0;
   let startT = 0;
@@ -70,8 +88,13 @@
       if (Math.abs(dx) < Math.abs(dy) * 1.2) return;
 
       e.preventDefault();
-      if (dx > 0) nextTarget.click();
-      else hit.click();
+      if (dx > 0) {
+        nextTarget.click();
+      } else {
+        const flipOnly = document.getElementById("flipSideBtn");
+        if (flipOnly) flipOnly.click();
+        else nextTarget.click();
+      }
     },
     { passive: false }
   );
