@@ -1,0 +1,64 @@
+{
+  "words": [
+    {
+      "es": "cuenta",
+      "en": "bill / check",
+      "tag": "food",
+      "reason": "homograph"
+    },
+    {
+      "es": "partido",
+      "en": "match / game",
+      "tag": "sports",
+      "reason": "homograph"
+    },
+    {
+      "es": "segundo",
+      "en": "second",
+      "tag": "numbers",
+      "reason": "homograph"
+    },
+    {
+      "es": "carpeta digital",
+      "en": "folder (digital)",
+      "tag": "tech",
+      "reason": "homograph"
+    },
+    {
+      "es": "me llamo…",
+      "en": "my name is…",
+      "tag": "basics",
+      "reason": "invalid_fetch",
+      "ar": "اسمي هو…"
+    },
+    {
+      "es": "soy de…",
+      "en": "I'm from…",
+      "tag": "basics",
+      "reason": "invalid_fetch",
+      "ar": "انا من…"
+    },
+    {
+      "es": "conductor",
+      "en": "driver",
+      "tag": "work",
+      "reason": "invalid_fetch",
+      "ar": "driver"
+    },
+    {
+      "es": "aplicación",
+      "en": "app",
+      "tag": "tech",
+      "reason": "invalid_fetch",
+      "ar": "برنامج"
+    },
+    {
+      "es": "programa",
+      "en": "TV show",
+      "tag": "media",
+      "reason": "invalid_fetch",
+      "ar": "برنامج تلفزيوني"
+    }
+  ],
+  "totalDropped": 9
+}

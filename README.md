@@ -22,15 +22,16 @@ Open [http://localhost:8080](http://localhost:8080).
 3. **Settings → Pages →** deploy from `main` / root.
 4. Site URL: `https://<username>.github.io/Arabic-Flashcards/`
 
-## Word bank (1,097 cards)
+## Word bank (verified deck)
 
-Vocabulary mirrors the Spanish site outline: same `wordbank.js` layout (`extra`, `moreBulk`, `evenMore`, `topicBoostV1`), **1,097** cards, same English glosses and tags. Arabic side is **Iraqi (Baghdad colloquial)** where natural; MSA only when Iraqi has no common single-word equivalent.
+**973** vocabulary cards — each Arabic gloss is verified (Iraqi lexicon, manual overrides, or validated translation). Ambiguous or doubtful cards are removed rather than shown with a risky gloss.
 
-Rebuild Iraqi banks:
+Rebuild the verified deck:
 
 ```bash
 git clone --depth 1 https://github.com/bareq4601358-alj/Spanish-Flashcards.git /tmp/spanish-flashcards
-node scripts/build-iraqi-complete.mjs
+node scripts/build-verified-deck.mjs
+node scripts/prune-doubtful-cards.mjs
 ```
 
 To rebuild from the Spanish repo (read-only clone; does not change Spanish GitHub):

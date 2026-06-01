@@ -2,7 +2,7 @@
 (() => {
   "use strict";
 
-  /** English ↔ Iraqi Arabic sentence pairs (outline from Spanish-Flashcards). */
+  /** Verified Iraqi Arabic sentences only. */
   window.SENTENCE_BANK = [
     { en: "Why are you calling me?", ar: "لشنو تتصل بي؟", tag: "questions" },
     { en: "What are you doing here?", ar: "ما الذي تفعله هنا؟", tag: "questions" },
@@ -71,7 +71,6 @@
     { en: "I'm taller than my brother.", ar: "أنا أطول من أخي.", tag: "comparison" },
     { en: "They arrived two hours ago.", ar: "لقد وصلوا قبل ساعتين.", tag: "time" },
     { en: "See you in a week.", ar: "نراكم في أسبوع.", tag: "time" },
-    { en: "I've lived here since 2020.", ar: "لقد عشت هنا منذ عام 2020.", tag: "time" },
     { en: "During the trip we slept little.", ar: "خلال الرحلة نمنا قليلاً.", tag: "time" },
     { en: "According to the news, it's true.", ar: "بحسب الأخبار، هذا صحيح.", tag: "discourse" },
     { en: "In my opinion, it's a bad idea.", ar: "في رأيي، إنها فكرة سيئة.", tag: "discourse" },
