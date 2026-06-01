@@ -11,15 +11,11 @@
     { id: "writing", href: "./writing.html", label: "Writing" },
     { id: "saved", href: "./saved.html", label: "Saved" },
     { id: "hidden", href: "./hidden.html", label: "Hidden" },
-    { id: "curate", href: "./curate.html", label: "Review words" },
   ];
 
   function mountNav(el) {
     const current = el.getAttribute("data-site-nav-current") || el.getAttribute("data-ar-nav-current") || "";
-    const hideCurate =
-      el.getAttribute("data-site-nav-hide-curate") === "true" ||
-      el.getAttribute("data-ar-nav-hide-curate") === "true";
-    const items = hideCurate ? NAV.filter((n) => n.id !== "curate") : NAV;
+    const items = NAV;
     el.innerHTML = "";
     for (const item of items) {
       const a = document.createElement("a");
