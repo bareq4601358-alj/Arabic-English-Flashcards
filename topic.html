@@ -60,7 +60,13 @@
         <section class="panel studyPanel" aria-label="Topic study">
           <div class="studyRow" role="group" aria-label="Card controls">
             <div class="studyControlBar studyControlBar--solo">
-              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn">Flip ▸</button>
+              <button
+                type="button"
+                class="btn navBtn primary studyFlipBtn desktopOnlyControl"
+                id="stepBtn"
+              >
+                Flip ▸
+              </button>
             </div>
           </div>
 
@@ -73,7 +79,7 @@
             >
               <div class="flashcard3d">
                 <div class="flashcardInner" id="flashcardInner">
-                                    <div class="flashFace flashFaceFront">
+                  <div class="flashFace flashFaceFront">
                     <span class="flashLabel">Arabic</span>
                     <p class="flashWord flashWordAr" id="textAr">—</p>
                     <span class="flashCornerTag" id="deckTag">—</span>
@@ -86,6 +92,11 @@
               </div>
             </button>
           </div>
+
+          <p class="deckHelpNote muted">
+            Flip: click the card or <kbd>←</kbd> · Next: <kbd>→</kbd> or the Flip/Next button · Save:
+            <kbd>S</kbd> · Hide: <kbd>Delete</kbd> or the Hide button.
+          </p>
 
           <div class="miniHelp" id="toastBar">
             <span id="saveToast" class="saveToast" aria-live="polite"></span>

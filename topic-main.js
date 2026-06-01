@@ -3,6 +3,14 @@
   "use strict";
 
   const norm = (s) => String(s ?? "").trim();
+  const MAX_BOOT_ATTEMPTS = 100;
+
+  function escapeAttr(s) {
+    return String(s ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/"/g, "&quot;");
+  }
 
   function getTopicFromUrl() {
     const params = new URLSearchParams(window.location.search);
@@ -12,51 +20,22 @@
     return { topicId, topicDef };
   }
 
-  const { topicId, topicDef } = getTopicFromUrl();
-
-  if (!topicDef || !Array.isArray(topicDef.tags) || !topicDef.tags.length) {
-    window.location.replace("./topics.html");
-    return;
+  function collectElements() {
+    return {
+      statDeck: document.getElementById("statDeck"),
+      statSaved: document.getElementById("statSaved"),
+      statRemoved: document.getElementById("statRemoved"),
+      hideCardBtn: document.getElementById("hideCardBtn"),
+      saveBtn: document.getElementById("saveBtn"),
+      saveToast: document.getElementById("saveToast"),
+      stepBtn: document.getElementById("stepBtn"),
+      flashcardHit: document.getElementById("flashcardHit"),
+      flashcardInner: document.getElementById("flashcardInner"),
+      textAr: document.getElementById("textAr"),
+      textEnBack: document.getElementById("textEnBack"),
+      deckTag: document.getElementById("deckTag"),
+    };
   }
-
-  const topicTagSet = new Set(topicDef.tags.map((t) => norm(t).toLowerCase()).filter(Boolean));
-  const topicLabel = topicDef.label || "Topic";
-
-  const heading = document.getElementById("topicStudyHeading");
-  const sub = document.getElementById("topicStudySubtitle");
-  if (heading) {
-    heading.textContent = topicLabel;
-    heading.setAttribute("lang", "ar");
-    heading.setAttribute("dir", "rtl");
-  }
-  document.title = `${topicLabel} · Arabic · English`;
-  if (sub) {
-    sub.innerHTML = `Studying <strong lang="ar" dir="rtl">${escapeAttr(topicLabel)}</strong> only. Full deck unchanged on <a class="muted inlineLink" href="./index.html">Main deck</a>.`;
-  }
-
-  function escapeAttr(s) {
-    return String(s ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  const els = {
-    statDeck: document.getElementById("statDeck"),
-    statSaved: document.getElementById("statSaved"),
-    statRemoved: document.getElementById("statRemoved"),
-    hideCardBtn: document.getElementById("hideCardBtn"),
-    saveBtn: document.getElementById("saveBtn"),
-    saveToast: document.getElementById("saveToast"),
-
-    stepBtn: document.getElementById("stepBtn"),
-
-    flashcardHit: document.getElementById("flashcardHit"),
-    flashcardInner: document.getElementById("flashcardInner"),
-    textAr: document.getElementById("textAr"),
-    textEnBack: document.getElementById("textEnBack"),
-    deckTag: document.getElementById("deckTag"),
-  };
 
   const STORAGE = {
     customWords: "flash.ar-en.customWords.v1",
@@ -64,8 +43,14 @@
     saved: "flash.ar-en.saved.v1",
   };
 
-  /** @type {number} */
+  let els = collectElements();
+  let topicTagSet = new Set();
+  let bank = [];
+  let removed = loadRemoved();
+  let current = null;
   let saveToastClear = 0;
+  let didStart = false;
+  let bootAttempts = 0;
 
   const keyOf = (w) => norm(w.ar).toLowerCase();
   const uniqBy = (arr, getKey) => {
@@ -152,10 +137,6 @@
     return uniqBy(cleaned, keyOf);
   }
 
-  let bank = makeBank();
-  let removed = loadRemoved();
-  let current = null;
-
   function activeDeck() {
     return bank.filter((w) => !removed.has(keyOf(w)));
   }
@@ -200,6 +181,7 @@
     return Boolean(els.flashcardInner?.classList.contains("isFlipped"));
   }
 
+  /** Desktop: card click flips only. Mobile: mobile-deck.js routes taps to stepBtn. */
   function flipFacesOnly() {
     if (!current || !els.flashcardInner) return;
     els.flashcardInner.classList.toggle("isFlipped");
@@ -249,6 +231,7 @@
     }
   }
 
+  /** Flip button / → : first press shows English; second loads next card. */
   function stepForwardFromRightArrow() {
     if (!current || !els.flashcardInner) return;
     if (!els.flashcardInner.classList.contains("isFlipped")) {
@@ -282,20 +265,6 @@
 
   function setupEvents() {
     if (els.stepBtn) els.stepBtn.addEventListener("click", stepForwardFromRightArrow);
-    const flipSideBtn = document.getElementById("flipSideBtn");
-    const nextCardBtn = document.getElementById("nextCardBtn");
-    if (flipSideBtn) {
-      flipSideBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        flipFacesOnly();
-      });
-    }
-    if (nextCardBtn) {
-      nextCardBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        stepForwardFromRightArrow();
-      });
-    }
     if (els.saveBtn) els.saveBtn.addEventListener("click", saveCurrentToMemoryBank);
     if (els.hideCardBtn) els.hideCardBtn.addEventListener("click", removeCurrentPermanently);
 
@@ -338,31 +307,73 @@
     });
   }
 
+  function applyTopicChrome(topicDef) {
+    const topicLabel = topicDef.label || "Topic";
+    const heading = document.getElementById("topicStudyHeading");
+    const sub = document.getElementById("topicStudySubtitle");
+    if (heading) {
+      heading.textContent = topicLabel;
+      heading.setAttribute("lang", "ar");
+      heading.setAttribute("dir", "rtl");
+    }
+    document.title = `${topicLabel} · Arabic · English`;
+    if (sub) {
+      sub.innerHTML = `Studying <strong lang="ar" dir="rtl">${escapeAttr(topicLabel)}</strong> only. Full deck unchanged on <a class="muted inlineLink" href="./index.html">Main deck</a>.`;
+    }
+  }
+
   function start() {
+    if (didStart) return;
+    didStart = true;
+
+    els = collectElements();
     if (!els.flashcardHit || !els.flashcardInner || !els.textAr || !els.textEnBack) {
       console.error("Topic study: flashcard markup is missing on this page.");
       return;
     }
+
+    removed = loadRemoved();
     setupEvents();
     refreshAll();
     showCard(pickWord({ shuffle: true }) || activeDeck()[0] || null);
     updateStepUi();
   }
 
+  function bankReady() {
+    return Array.isArray(window.WORD_BANK) && window.WORD_BANK.length > 0;
+  }
+
+  function tryStartDeck() {
+    if (!bankReady()) return false;
+    start();
+    return true;
+  }
+
   function boot() {
+    bootAttempts += 1;
+
     if (!Array.isArray(window.TOPIC_GROUPS) || !window.TOPIC_GROUPS.length) {
-      window.setTimeout(boot, 50);
+      if (bootAttempts < MAX_BOOT_ATTEMPTS) {
+        window.setTimeout(boot, 50);
+        return;
+      }
+      window.location.replace("./topics.html");
       return;
     }
-    const bankReady = () => Array.isArray(window.WORD_BANK) && window.WORD_BANK.length > 0;
-    if (bankReady()) {
-      start();
+
+    const { topicDef } = getTopicFromUrl();
+    if (!topicDef || !Array.isArray(topicDef.tags) || !topicDef.tags.length) {
+      window.location.replace("./topics.html");
       return;
     }
-    window.addEventListener("wordbankready", () => start(), { once: true });
-    window.setTimeout(() => {
-      if (bankReady()) start();
-    }, 3000);
+
+    topicTagSet = new Set(topicDef.tags.map((t) => norm(t).toLowerCase()).filter(Boolean));
+    applyTopicChrome(topicDef);
+
+    if (tryStartDeck()) return;
+
+    window.addEventListener("wordbankready", () => tryStartDeck(), { once: true });
+    window.setTimeout(() => tryStartDeck(), 2500);
   }
 
   if (document.readyState === "loading") {
