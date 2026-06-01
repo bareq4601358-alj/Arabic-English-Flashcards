@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Grammar & sentence structure — Arabic · English</title>
+    <link rel="stylesheet" href="./style.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="phrasePage">
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Grammar & sentence structure</h1>
+        <div class="phraseToolbar" aria-label="Sentence deck">
+          <div class="stats phraseToolbar-stats">
+            <div class="stat">
+              <div class="statLabel">In deck</div>
+              <div class="statValue" id="statDeck">—</div>
+            </div>
+            <a class="stat statLink" href="./phrases-saved.html" title="Open saved sentences">
+              <div class="statLabel">Saved</div>
+              <div class="statValue" id="statSaved">—</div>
+            </a>
+            <a class="stat statLink" href="./hidden.html" title="View or restore hidden vocabulary and sentences">
+              <div class="statLabel">Hidden</div>
+              <div class="statValue" id="statRemoved">—</div>
+            </a>
+          </div>
+          <div class="phraseToolbar-actions">
+            <div class="phraseToolbar-actionsInner" aria-label="Study modes and sentence deck actions">
+              <nav class="phraseToolbar-nav" aria-label="Study modes">
+                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./index.html">Main</a>
+                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./topics.html">Topics</a>
+                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./matching.html">Matching</a>
+                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./writing.html">Writing</a>
+                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./phrases-saved.html">Saved</a>
+              </nav>
+              <nav class="phraseToolbar-nav" aria-label="Sentence deck actions">
+                <button class="btn ghost btnSm phraseToolbar-navBtn" id="saveBtn" type="button" title="Keyboard shortcut: S" aria-label="Save sentence; keyboard shortcut S">
+                  Save
+                </button>
+                <button
+                  class="btn danger btnSm phraseToolbar-navBtn"
+                  id="hideCardBtn"
+                  type="button"
+                  title="Remove this sentence from your sentence deck on this browser"
+                >
+                  Hide
+                </button>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel studyPanel" aria-label="Sentence flashcards">
+          <div class="studyRow" role="group" aria-label="Card controls">
+            <div class="studyControlBar studyControlBar--solo">
+              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn">Flip ▸</button>
+            </div>
+          </div>
+
+          <div class="flashcardStage">
+            <button
+              type="button"
+              class="flashcardHit"
+              id="flashcardHit"
+              aria-label="Sentence flashcard — click to flip"
+            >
+              <div class="flashcard3d">
+                <div class="flashcardInner" id="flashcardInner">
+                                    <div class="flashFace flashFaceFront">
+                    <span class="flashLabel">Arabic</span>
+                    <p class="flashWord flashWordAr" id="textAr">—</p>
+                    <span class="flashCornerTag" id="deckTag">—</span>
+                  </div>
+                  <div class="flashFace flashFaceBack">
+                    <span class="flashLabel">English</span>
+                    <p class="flashWord" id="textEnBack">—</p>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <div class="miniHelp" id="toastBar">
+            <span id="saveToast" class="saveToast" aria-live="polite"></span>
+          </div>
+        </section>
+      </section>
+
+    </main>
+
+    <script src="./sentence-bank.js" defer></script>
+    <script src="./phrases.js" defer></script>
+    <script src="./mobile-deck.js" defer></script>
+  </body>
+</html>

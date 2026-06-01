@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Topics — Arabic · English Flashcards</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Topics</h1>
+        <p class="subtitle subtitleTight desktopOnlyControl">
+          Topics are grouped below. Open one to study <strong>only that slice</strong> of vocabulary. Your full main deck
+          is unchanged — use <a class="muted inlineLink" href="./index.html">Main deck</a> for all ~1,500 words together.
+          Save, hide, and hidden lists are shared with the main deck.
+        </p>
+        <div class="stats statsRow" aria-label="Navigation">
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <a class="btn ghost btnSm" href="./saved.html">Saved</a>
+          <a class="btn ghost btnSm" href="./hidden.html">Hidden</a>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel studyPanel topicHubPanel" aria-label="Topic list">
+          <p class="studyHint muted studyHintSolo" id="topicHubIntro">
+            Loading topics…
+          </p>
+          <div class="topicHubSections" id="topicHubSections" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./topics-data.js"></script>
+    <script src="./topics-hub.js"></script>
+    <script src="./english-display.js"></script>
+    <script src="./wordbank.js" defer></script>
+  </body>
+</html>

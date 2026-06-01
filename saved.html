@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Saved flashcards</title>
+    <link rel="stylesheet" href="./style.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Saved flashcards</h1>
+        <div class="stats statsRow" aria-label="Saved deck">
+          <div class="stat">
+            <div class="statLabel">Saved</div>
+            <div class="statValue" id="statTotal">—</div>
+          </div>
+          <div class="stat">
+            <div class="statLabel">#</div>
+            <div class="statValue" id="statPosition">—</div>
+          </div>
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
+          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <a class="btn ghost btnSm" href="./saved.html" aria-current="page">Saved deck</a>
+          <a class="btn ghost btnSm" href="./phrases-saved.html">Sent. saved</a>
+          <button class="btn ghost btnSm" id="removeSavedBtn" type="button">Remove</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel studyPanel" aria-label="Saved flashcards">
+          <div class="studyRow" role="group" aria-label="Card controls">
+            <div class="studyControlBar studyControlBar--solo">
+              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn">Flip ▸</button>
+            </div>
+          </div>
+
+          <div class="flashcardStage">
+            <button
+              type="button"
+              class="flashcardHit"
+              id="flashcardHit"
+              aria-label="Flashcard — click to flip"
+            >
+              <div class="flashcard3d">
+                <div class="flashcardInner" id="flashcardInner">
+                                    <div class="flashFace flashFaceFront">
+                    <span class="flashLabel">Arabic</span>
+                    <p class="flashWord flashWordAr" id="textAr">—</p>
+                    <span class="flashCornerTag" id="cornerTag">—</span>
+                  </div>
+                  <div class="flashFace flashFaceBack">
+                    <span class="flashLabel">English</span>
+                    <p class="flashWord" id="textEnBack">—</p>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <p class="deckHelpNote muted">
+            Same as main: <kbd>←</kbd> flip · <kbd>→</kbd> flip then next · <kbd>Delete</kbd> or <kbd>Backspace</kbd>
+            removes from this saved list only (not from your main deck).
+          </p>
+        </section>
+      </section>
+
+      <footer class="footer footerBar">
+        <span class="muted">Saved list syncs with the main page in this browser.</span>
+      </footer>
+    </main>
+
+    <script src="./english-display.js"></script>
+    <script src="./saved.js" defer></script>
+    <script src="./mobile-deck.js" defer></script>
+  </body>
+</html>

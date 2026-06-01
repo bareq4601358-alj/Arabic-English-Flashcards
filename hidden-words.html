@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Hidden vocabulary</title>
+    <link rel="stylesheet" href="./style.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Hidden vocabulary</h1>
+        <p class="subtitle subtitleTight desktopOnlyControl">
+          <kbd>←</kbd> flip · <kbd>→</kbd> flip then next · <strong>Retrieve</strong> puts this word back into your main
+          vocabulary deck.
+        </p>
+        <div class="stats statsRow" aria-label="Hidden words">
+          <div class="stat">
+            <div class="statLabel">Hidden</div>
+            <div class="statValue" id="statTotal">—</div>
+          </div>
+          <div class="stat">
+            <div class="statLabel">#</div>
+            <div class="statValue" id="statPosition">—</div>
+          </div>
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./hidden.html">All hidden</a>
+          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
+          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <button class="btn primary btnSm" id="retrieveBtn" type="button">Retrieve</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel studyPanel" aria-label="Hidden vocabulary cards">
+          <div class="studyRow" role="group" aria-label="Card controls">
+            <div class="studyControlBar studyControlBar--solo">
+              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn">Flip ▸</button>
+            </div>
+          </div>
+
+          <div class="flashcardStage">
+            <button
+              type="button"
+              class="flashcardHit"
+              id="flashcardHit"
+              aria-label="Flashcard — click to flip"
+            >
+              <div class="flashcard3d">
+                <div class="flashcardInner" id="flashcardInner">
+                                    <div class="flashFace flashFaceFront">
+                    <span class="flashLabel">Arabic</span>
+                    <p class="flashWord flashWordAr" id="textAr">—</p>
+                    <span class="flashCornerTag" id="cornerTag">—</span>
+                  </div>
+                  <div class="flashFace flashFaceBack">
+                    <span class="flashLabel">English</span>
+                    <p class="flashWord" id="textEnBack">—</p>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+
+        </section>
+      </section>
+    </main>
+
+    <script src="./english-display.js"></script>
+    <script src="./wordbank.js" defer></script>
+    <script src="./hidden-words.js" defer></script>
+    <script src="./mobile-deck.js" defer></script>
+  </body>
+</html>

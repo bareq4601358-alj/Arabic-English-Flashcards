@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Arabic · English Flashcards</title>
+    <link rel="stylesheet" href="./style.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="deckPage">
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Arabic · English Flashcards</h1>
+        <div class="phraseToolbar deckToolbar" aria-label="Deck">
+          <div class="stats phraseToolbar-stats">
+            <div class="stat">
+              <div class="statLabel">In deck</div>
+              <div class="statValue" id="statDeck">—</div>
+            </div>
+            <a class="stat statLink" href="./saved.html" title="Open saved vocabulary deck">
+              <div class="statLabel">Saved</div>
+              <div class="statValue" id="statSaved">—</div>
+            </a>
+            <a class="stat statLink" href="./hidden.html" title="View or restore hidden vocabulary and sentences">
+              <div class="statLabel">Hidden</div>
+              <div class="statValue" id="statRemoved">—</div>
+            </a>
+          </div>
+          <div class="phraseToolbar-actions">
+            <div class="phraseToolbar-actionsInner" aria-label="Study modes and deck actions">
+            <nav class="phraseToolbar-nav" aria-label="Study modes">
+              <a class="btn ghost btnSm phraseToolbar-navBtn" href="./topics.html">Topics</a>
+              <a class="btn ghost btnSm phraseToolbar-navBtn" href="./matching.html">Matching</a>
+              <a class="btn ghost btnSm phraseToolbar-navBtn" href="./phrases.html">Sentences</a>
+              <a class="btn ghost btnSm phraseToolbar-navBtn" href="./writing.html">Writing</a>
+              <a class="btn ghost btnSm phraseToolbar-navBtn" href="./saved.html">Saved deck</a>
+            </nav>
+            <nav class="phraseToolbar-nav" aria-label="Deck actions">
+              <button class="btn ghost btnSm phraseToolbar-navBtn" id="saveBtn" type="button" title="Keyboard shortcut: S" aria-label="Save to memory bank; keyboard shortcut S">
+                Save
+              </button>
+              <button
+                class="btn danger btnSm phraseToolbar-navBtn"
+                id="hideCardBtn"
+                type="button"
+                title="Remove this word from your main deck on this browser"
+              >
+                Hide card
+              </button>
+            </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel studyPanel" aria-label="Study">
+          <div class="studyRow" role="group" aria-label="Topic and card controls">
+            <div class="studyControlBar">
+              <div class="topicDrop" id="topicDrop">
+                <button
+                  type="button"
+                  class="btn navBtn primary topicDropBtn"
+                  id="topicDropBtn"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="topicDropMenu"
+                >
+                  <span class="topicDropBtnText" id="topicDropLabel">All cards</span>
+                  <span class="topicDropChev" aria-hidden="true">▾</span>
+                </button>
+                <div class="topicDropMenu" id="topicDropMenu" role="listbox" aria-label="Choose a topic" hidden></div>
+              </div>
+              <button type="button" class="btn navBtn primary studyFlipBtn desktopOnlyControl" id="stepBtn">
+                Flip ▸
+              </button>
+            </div>
+          </div>
+
+          <div class="flashcardStage">
+            <button
+              type="button"
+              class="flashcardHit"
+              id="flashcardHit"
+              aria-label="Flashcard — click to flip"
+            >
+              <div class="flashcard3d">
+                <div class="flashcardInner" id="flashcardInner">
+                  <div class="flashFace flashFaceFront">
+                    <span class="flashLabel">Arabic</span>
+                    <p class="flashWord flashWordAr" id="textAr">—</p>
+                    <span class="flashCornerTag" id="deckTag">—</span>
+                  </div>
+                  <div class="flashFace flashFaceBack">
+                    <span class="flashLabel">English</span>
+                    <p class="flashWord" id="textEnBack">—</p>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <p class="deckHelpNote muted">
+            Flip: click or <kbd>←</kbd> · Next: <kbd>→</kbd> · Save: button or <kbd>S</kbd> ·
+            <kbd>Delete</kbd> / <kbd>Backspace</kbd> or Hide hides this card from your main deck on
+            <strong>this browser only</strong>. Tap <strong>Hidden</strong> above to review or restore cards you hid by
+            mistake.
+          </p>
+
+          <div class="miniHelp" id="toastBar">
+            <span id="saveToast" class="saveToast" aria-live="polite"></span>
+          </div>
+        </section>
+      </section>
+
+    </main>
+
+    <script src="./topics-data.js"></script>
+    <script src="./english-display.js"></script>
+    <script src="./wordbank.js" defer></script>
+    <script src="./main.js" defer></script>
+    <script src="./mobile-deck.js" defer></script>
+  </body>
+</html>

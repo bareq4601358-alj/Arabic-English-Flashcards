@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Matching cards — Arabic · English</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="matchingPage">
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter">Matching cards</h1>
+        <div class="stats statsRow" aria-label="Navigation">
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <a class="btn ghost btnSm" href="./saved.html">Saved</a>
+          <a class="btn ghost btnSm" href="./hidden.html">Hidden</a>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel matchPanel" aria-label="Matching game">
+          <div class="matchTopicBar" aria-label="Topic filter">
+            <div class="matchTopicBarMain">
+              <label class="matchTopicLabel" for="matchTopicSelect">Study topic</label>
+              <div class="matchTopicSelectWrap">
+                <select id="matchTopicSelect" class="matchTopicSelect" aria-describedby="matchTopicBlurb"></select>
+              </div>
+            </div>
+            <p class="matchTopicBlurb muted" id="matchTopicBlurb">Choose a topic to match words from that slice of the bank.</p>
+            <p class="matchTopicPool muted" id="matchTopicPool" aria-live="polite"></p>
+          </div>
+
+          <div class="matchEmpty" id="matchEmpty" hidden>
+            <p class="matchEmptyTitle">Not enough words in this topic</p>
+            <p class="matchEmptyText muted">You need at least 5 words to play matching. Try another topic or use <strong>All vocabulary</strong>.</p>
+          </div>
+
+          <div class="matchPlayArea" id="matchPlayArea">
+          <div class="matchTopRow" aria-label="Round status">
+            <div class="matchStats">
+              <div class="matchStat">
+                <div class="matchStatLabel">Correct</div>
+                <div class="matchStatValue" id="matchCorrect">0</div>
+              </div>
+              <div class="matchStat">
+                <div class="matchStatLabel">Mistakes</div>
+                <div class="matchStatValue" id="matchMistakes">0</div>
+              </div>
+            </div>
+            <div class="matchControls">
+              <button class="btn ghost btnSm" id="matchResetBtn" type="button">New round</button>
+            </div>
+          </div>
+
+          <div class="matchGrid" role="group" aria-label="Arabic and English choices">
+            <div class="matchCol" aria-label="Arabic">
+              <div class="matchColHead">
+                <span class="matchColTitle">Arabic</span>
+              </div>
+              <div class="matchList" id="matchLeft" aria-label="Arabic list"></div>
+            </div>
+
+            <div class="matchCol" aria-label="English">
+              <div class="matchColHead">
+                <span class="matchColTitle">English</span>
+              </div>
+              <div class="matchList" id="matchRight" aria-label="English list"></div>
+            </div>
+          </div>
+
+          <div class="matchToastRow" aria-live="polite">
+            <span class="matchToast" id="matchToast"></span>
+          </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./topics-data.js"></script>
+    <script src="./english-display.js"></script>
+    <script src="./wordbank.js" defer></script>
+    <script src="./matching.js" defer></script>
+  </body>
+</html>
+
