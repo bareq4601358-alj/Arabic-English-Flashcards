@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title data-ar-title="مراجعة الكلمات — عربي · إنجليزي">مراجعة الكلمات</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="curatePage">
+    <main class="app">
+      <header class="header headerCompact">
+        <h1 class="title titleCenter" lang="ar">مراجعة الكلمات</h1>
+        <p class="subtitle subtitleTight curateIntro" lang="ar">
+          اضغط على <strong>الكلمة العربية</strong> لحذفها من مجموعتك في هذا المتصفح. الكلمات المحذوفة تختفي من
+          البطاقات والمواضيع والمطابقة. يمكنك استرجاعها من صفحة <a class="muted inlineLink" href="./hidden.html">مخفي</a>.
+        </p>
+        <div class="curateStats" id="curateStats" aria-live="polite" lang="ar">جاري التحميل…</div>
+        <nav class="stats statsRow" data-ar-nav data-ar-nav-current="curate" aria-label="القائمة الرئيسية"></nav>
+        <div class="curateToolbar" lang="ar">
+          <button type="button" class="btn ghost btnSm" id="curateExpandAll">إظهار الكل</button>
+          <button type="button" class="btn ghost btnSm" id="curateCollapseAll">طيّ الكل</button>
+          <button type="button" class="btn ghost btnSm" id="curateExportBtn">تصدير المحذوف</button>
+        </div>
+      </header>
+
+      <section class="stage">
+        <section class="panel curatePanel" aria-label="قائمة الكلمات">
+          <div class="curateSections" id="curateSections"></div>
+          <p class="curateToast muted" id="curateToast" aria-live="polite"></p>
+        </section>
+      </section>
+    </main>
+
+    <script src="./topics-data.js"></script>
+    <script src="./english-display.js"></script>
+    <script src="./wordbank.js" defer></script>
+    <script src="./site-nav.js" defer></script>
+    <script src="./curate.js" defer></script>
+  </body>
+</html>

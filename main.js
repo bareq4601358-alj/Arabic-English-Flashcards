@@ -162,7 +162,7 @@
   }
 
   function topicDisplayLabel(topicId) {
-    if (topicId === "all") return "All cards";
+    if (topicId === "all") return "كل البطاقات";
     const def = getTopicDef(topicId);
     return def?.label || topicId;
   }
@@ -226,7 +226,7 @@
     const sections = Array.isArray(window.TOPIC_SECTIONS) ? window.TOPIC_SECTIONS : [];
     els.topicDropMenu.innerHTML = "";
 
-    appendTopicMenuItem(els.topicDropMenu, "all", "All cards", countForTopic("all"));
+    appendTopicMenuItem(els.topicDropMenu, "all", "كل البطاقات", countForTopic("all"));
 
     for (const sec of sections) {
       const topics = Array.isArray(sec.topics) ? sec.topics : [];
@@ -319,13 +319,13 @@
     const list = loadSavedCards();
     const id = keyOf(incoming);
     if (list.some((w) => keyOf(w) === id)) {
-      showSaveToast("Already in saved deck.");
+      showSaveToast("موجودة مسبقاً في المحفوظ.");
       return;
     }
     list.push(incoming);
     persistSavedCards(list);
     renderStats();
-    showSaveToast("Saved to memory bank.");
+    showSaveToast("تم الحفظ.");
   }
 
   function showingEnglish() {
@@ -348,7 +348,7 @@
 
   function updateStepUi() {
     const esp = showingEnglish();
-    if (els.stepBtn) els.stepBtn.textContent = esp ? "Next ▸" : "Flip ▸";
+    if (els.stepBtn) els.stepBtn.textContent = esp ? "التالي ▸" : "اقلب ▸";
   }
 
   function pickWord({ shuffle = false, excludeId = "" } = {}) {
@@ -368,7 +368,7 @@
     updateStepUi();
 
     if (!word) {
-      els.textAr.textContent = "No cards in this deck.";
+      els.textAr.textContent = "لا توجد بطاقات في هذا الموضوع.";
       els.textEnBack.textContent = "—";
       els.deckTag.textContent = "—";
       els.flashcardHit.disabled = true;

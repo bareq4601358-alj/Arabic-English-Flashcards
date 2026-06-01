@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Grammar & sentence structure — Arabic · English</title>
+    <title>الجمل — عربي · إنجليزي</title>
     <link rel="stylesheet" href="./style.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,42 +12,37 @@
   <body class="phrasePage">
     <main class="app">
       <header class="header headerCompact">
-        <h1 class="title titleCenter">Grammar & sentence structure</h1>
+        <h1 class="title titleCenter" lang="ar">الجمل والقواعد</h1>
         <div class="phraseToolbar" aria-label="Sentence deck">
           <div class="stats phraseToolbar-stats">
             <div class="stat">
-              <div class="statLabel">In deck</div>
+              <div class="statLabel" lang="ar">في المجموعة</div>
               <div class="statValue" id="statDeck">—</div>
             </div>
             <a class="stat statLink" href="./phrases-saved.html" title="Open saved sentences">
-              <div class="statLabel">Saved</div>
+              <div class="statLabel" lang="ar">محفوظ</div>
               <div class="statValue" id="statSaved">—</div>
             </a>
             <a class="stat statLink" href="./hidden.html" title="View or restore hidden vocabulary and sentences">
-              <div class="statLabel">Hidden</div>
+              <div class="statLabel" lang="ar">مخفي</div>
               <div class="statValue" id="statRemoved">—</div>
             </a>
           </div>
           <div class="phraseToolbar-actions">
             <div class="phraseToolbar-actionsInner" aria-label="Study modes and sentence deck actions">
-              <nav class="phraseToolbar-nav" aria-label="Study modes">
-                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./index.html">Main</a>
-                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./topics.html">Topics</a>
-                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./matching.html">Matching</a>
-                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./writing.html">Writing</a>
-                <a class="btn ghost btnSm phraseToolbar-navBtn" href="./phrases-saved.html">Saved</a>
-              </nav>
+              <nav class="phraseToolbar-nav" data-ar-nav data-ar-nav-current="phrases" aria-label="أوضاع الدراسة"></nav>
               <nav class="phraseToolbar-nav" aria-label="Sentence deck actions">
                 <button class="btn ghost btnSm phraseToolbar-navBtn" id="saveBtn" type="button" title="Keyboard shortcut: S" aria-label="Save sentence; keyboard shortcut S">
-                  Save
+                  حفظ
                 </button>
                 <button
                   class="btn danger btnSm phraseToolbar-navBtn"
                   id="hideCardBtn"
                   type="button"
-                  title="Remove this sentence from your sentence deck on this browser"
+                  title="إخفاء من مجموعة الجمل"
+                  lang="ar"
                 >
-                  Hide
+                  إخفاء
                 </button>
               </nav>
             </div>
@@ -97,5 +92,6 @@
     <script src="./sentence-bank.js" defer></script>
     <script src="./phrases.js" defer></script>
     <script src="./mobile-deck.js" defer></script>
+      <script src="./site-nav.js" defer></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Hidden vocabulary</title>
+    <title>مفردات مخفية</title>
     <link rel="stylesheet" href="./style.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,28 +12,12 @@
   <body>
     <main class="app">
       <header class="header headerCompact">
-        <h1 class="title titleCenter">Hidden vocabulary</h1>
+        <h1 class="title titleCenter" lang="ar">مفردات مخفية</h1>
         <p class="subtitle subtitleTight desktopOnlyControl">
           <kbd>←</kbd> flip · <kbd>→</kbd> flip then next · <strong>Retrieve</strong> puts this word back into your main
           vocabulary deck.
         </p>
-        <div class="stats statsRow" aria-label="Hidden words">
-          <div class="stat">
-            <div class="statLabel">Hidden</div>
-            <div class="statValue" id="statTotal">—</div>
-          </div>
-          <div class="stat">
-            <div class="statLabel">#</div>
-            <div class="statValue" id="statPosition">—</div>
-          </div>
-          <a class="btn ghost btnSm" href="./index.html">Main</a>
-          <a class="btn ghost btnSm" href="./hidden.html">All hidden</a>
-          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
-          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
-          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
-          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
-          <button class="btn primary btnSm" id="retrieveBtn" type="button">Retrieve</button>
-        </div>
+        <nav class="stats statsRow" data-ar-nav data-ar-nav-current="hidden" aria-label="القائمة الرئيسية"></nav>
       </header>
 
       <section class="stage">
@@ -75,5 +59,6 @@
     <script src="./wordbank.js" defer></script>
     <script src="./hidden-words.js" defer></script>
     <script src="./mobile-deck.js" defer></script>
+      <script src="./site-nav.js" defer></script>
   </body>
 </html>

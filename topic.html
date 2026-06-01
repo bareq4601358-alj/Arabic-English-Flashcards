@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Topic · Arabic · English Flashcards</title>
+    <title>موضوع — عربي · إنجليزي</title>
     <link rel="stylesheet" href="./style.css" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,44 +17,14 @@
           Subset of your main deck by topic. Full deck is unchanged on
           <a class="muted inlineLink" href="./index.html">Main deck</a>.
         </p>
-        <div class="stats statsRow" aria-label="Deck">
-          <div class="stat">
-            <div class="statLabel">In topic</div>
-            <div class="statValue" id="statDeck">—</div>
-          </div>
-          <a class="stat statLink" href="./saved.html" title="Open saved vocabulary deck">
-            <div class="statLabel">Saved</div>
-            <div class="statValue" id="statSaved">—</div>
-          </a>
-          <a class="stat statLink" href="./hidden.html" title="View or restore hidden vocabulary">
-            <div class="statLabel">Hidden</div>
-            <div class="statValue" id="statRemoved">—</div>
-          </a>
-          <button class="btn ghost btnSm" id="saveBtn" type="button" title="Keyboard shortcut: S" aria-label="Save to memory bank; keyboard shortcut S">
-            Save
-          </button>
-          <a class="btn ghost btnSm" href="./index.html">Main</a>
-          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
-          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
-          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
-          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
-          <a class="btn ghost btnSm" href="./saved.html">Saved deck</a>
-          <button
-            class="btn danger btnSm"
-            id="hideCardBtn"
-            type="button"
-            title="Remove this word from your main deck on this browser"
-          >
-            Hide card
-          </button>
-        </div>
+        <nav class="stats statsRow" data-ar-nav data-ar-nav-current="topics" aria-label="القائمة الرئيسية"></nav>
       </header>
 
       <section class="stage">
         <section class="panel studyPanel" aria-label="Topic study">
           <div class="studyRow" role="group" aria-label="Card controls">
             <div class="studyControlBar studyControlBar--solo">
-              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn">Flip ▸</button>
+              <button type="button" class="btn navBtn primary studyNextBtn" id="stepBtn" lang="ar">اقلب ▸</button>
             </div>
           </div>
 
@@ -68,12 +38,12 @@
               <div class="flashcard3d">
                 <div class="flashcardInner" id="flashcardInner">
                                     <div class="flashFace flashFaceFront">
-                    <span class="flashLabel">Arabic</span>
+                    <span class="flashLabel" lang="ar">عربي</span>
                     <p class="flashWord flashWordAr" id="textAr">—</p>
                     <span class="flashCornerTag" id="deckTag">—</span>
                   </div>
                   <div class="flashFace flashFaceBack">
-                    <span class="flashLabel">English</span>
+                    <span class="flashLabel" lang="en" dir="ltr">English</span>
                     <p class="flashWord" id="textEnBack">—</p>
                   </div>
                 </div>
@@ -93,5 +63,6 @@
     <script src="./wordbank.js" defer></script>
     <script src="./topic-main.js" defer></script>
     <script src="./mobile-deck.js" defer></script>
+      <script src="./site-nav.js" defer></script>
   </body>
 </html>

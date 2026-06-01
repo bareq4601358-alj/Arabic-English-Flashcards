@@ -1,38 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Hidden cards</title>
+    <title>مخفي — عربي · إنجليزي</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <main class="app">
       <header class="header headerCompact">
-        <h1 class="title titleCenter">Hidden cards</h1>
-        <p class="subtitle subtitleTight desktopOnlyControl">
-          Cards you hid from your main decks live here. Open either list, flip through like usual, then use
-          <strong>Retrieve</strong> to put one back into the active mix.
+        <h1 class="title titleCenter" lang="ar">البطاقات المخفية</h1>
+        <p class="subtitle subtitleTight desktopOnlyControl" lang="ar">
+          البطاقات التي أخفيتها تظهر هنا. افتح القائمة واستخدم <strong>استرجاع</strong> لإرجاع أي بطاقة.
         </p>
         <div class="hiddenHub">
-          <a class="hiddenHubCard btn ghost" href="./hidden-words.html">
-            <span class="hiddenHubTitle">Hidden vocabulary</span>
-            <span class="hiddenHubMeta muted"><span id="countWords">0</span> hidden</span>
+          <a class="hiddenHubCard btn ghost" href="./hidden-words.html" lang="ar">
+            <span class="hiddenHubTitle">مفردات مخفية</span>
+            <span class="hiddenHubMeta muted"><span id="countWords">0</span> مخفي</span>
           </a>
-          <a class="hiddenHubCard btn ghost" href="./hidden-sentences.html">
-            <span class="hiddenHubTitle">Hidden sentences</span>
-            <span class="hiddenHubMeta muted"><span id="countSentences">0</span> hidden</span>
+          <a class="hiddenHubCard btn ghost" href="./hidden-sentences.html" lang="ar">
+            <span class="hiddenHubTitle">جمل مخفية</span>
+            <span class="hiddenHubMeta muted"><span id="countSentences">0</span> مخفي</span>
           </a>
         </div>
-        <div class="stats statsRow hiddenHubBack">
-          <a class="btn ghost btnSm" href="./index.html">Main</a>
-          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
-          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
-          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
-          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
-        </div>
+        <nav class="stats statsRow" data-ar-nav data-ar-nav-current="hidden" aria-label="القائمة الرئيسية"></nav>
       </header>
     </main>
     <script src="./hidden-hub.js" defer></script>
+      <script src="./site-nav.js" defer></script>
   </body>
 </html>
