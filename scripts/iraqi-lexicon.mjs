@@ -1,16 +1,7 @@
-/**
- * Iraqi Arabic (Baghdad/colloquial) glosses keyed by English (same keys as Spanish-Flashcards outline).
- * MSA used only where noted or where Iraqi has no common single-word equivalent.
- */
+/** Optional English key aliases (no Spanish). */
 export const EN_ADAPT = {
-  "I speak a little Spanish": "I speak a little Arabic",
-  "Spanish omelette": "omelette",
   "computer (Spain)": "desktop computer",
   "homework (deberes)": "homework assignment",
-  "She speaks Spanish better than I do.": "She speaks Arabic better than I do.",
-  "I speak a little Spanish.": "I speak a little Arabic.",
-  "I wish I spoke Spanish fluently.": "I wish I spoke Arabic fluently.",
-  "Spanish is hard for me.": "Arabic is hard for me.",
 };
 
 /** Iraqi question words & particles */

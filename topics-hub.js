@@ -67,12 +67,16 @@
       const h2 = document.createElement("h2");
       h2.className = "topicSectionTitle";
       h2.id = `topicSec-${escapeAttrId(sec.id || "sec")}`;
-      h2.textContent = sec.title || "Topics";
+      h2.setAttribute("lang", "ar");
+      h2.setAttribute("dir", "rtl");
+      h2.textContent = sec.title || "المواضيع";
 
       head.appendChild(h2);
       if (norm(sec.subtitle)) {
         const p = document.createElement("p");
         p.className = "topicSectionSubtitle muted";
+        p.setAttribute("lang", "ar");
+        p.setAttribute("dir", "rtl");
         p.textContent = sec.subtitle;
         head.appendChild(p);
       }
@@ -86,6 +90,8 @@
         const a = document.createElement("a");
         a.className = "topicPickCard btn ghost";
         a.href = `./topic.html?id=${encodeURIComponent(t.id)}`;
+        a.setAttribute("lang", "ar");
+        a.setAttribute("dir", "rtl");
         a.innerHTML = `<span class="topicPickTitle">${escapeHtml(t.label)}</span><span class="topicPickMeta muted">${countLabel}</span><span class="topicPickBlurb">${escapeHtml(t.blurb || "")}</span>`;
         grid.appendChild(a);
       }
@@ -98,7 +104,9 @@
     if (intro) {
       if (ready) {
         intro.textContent =
-          "Topics are grouped below. Each opens a filtered deck — your full main deck is unchanged.";
+          "المواضيع مرتبة أدناه — كل موضوع يفتح مجموعة كلماته فقط.";
+        intro.setAttribute("lang", "ar");
+        intro.setAttribute("dir", "rtl");
       } else {
         intro.textContent =
           "Loading word bank… Topics appear below; card counts fill in as soon as the deck is ready.";

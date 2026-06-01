@@ -18,10 +18,16 @@
 
   const heading = document.getElementById("topicStudyHeading");
   const sub = document.getElementById("topicStudySubtitle");
-  if (heading) heading.textContent = topicLabel;
+  if (heading) {
+    heading.textContent = topicLabel;
+    heading.setAttribute("lang", "ar");
+    heading.setAttribute("dir", "rtl");
+  }
   document.title = `${topicLabel} · Arabic · English`;
   if (sub) {
-    sub.innerHTML = `Studying <strong>${escapeAttr(topicLabel)}</strong> only. Your full vocabulary list is unchanged on <a class="muted inlineLink" href="./index.html">Main deck</a>.`;
+    sub.setAttribute("lang", "ar");
+    sub.setAttribute("dir", "rtl");
+    sub.innerHTML = `دراسة <strong>${escapeAttr(topicLabel)}</strong> فقط — المجموعة الكاملة على <a class="muted inlineLink" href="./index.html">البطاقات الرئيسية</a>.`;
   }
 
   function escapeAttr(s) {

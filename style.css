@@ -219,6 +219,15 @@ body::before {
   max-width: 40rem;
 }
 
+.topicSectionTitle,
+.topicSectionTitle[lang="ar"],
+.topicPickCard[lang="ar"] .topicPickTitle,
+.topicPickCard[lang="ar"] .topicPickBlurb,
+.topicSectionSubtitle[lang="ar"],
+#topicHubIntro[lang="ar"] {
+  font-family: "Noto Naskh Arabic", "Instrument Serif", Georgia, serif;
+}
+
 .topicSectionTitle {
   margin: 0 0 6px;
   font-family: "Instrument Serif", Georgia, serif;
@@ -239,6 +248,10 @@ body::before {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 10px;
   width: 100%;
+}
+
+.topicPickCard[lang="ar"] {
+  text-align: right;
 }
 
 .topicPickCard {
