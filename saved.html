@@ -13,22 +13,23 @@
     <main class="app">
       <header class="header headerCompact">
         <h1 class="title titleCenter">Saved flashcards</h1>
-        <div class="phraseToolbar deckToolbar" aria-label="Saved deck">
-          <div class="stats phraseToolbar-stats">
-            <div class="stat">
-              <div class="statLabel">Saved</div>
-              <div class="statValue" id="statTotal">—</div>
-            </div>
-            <div class="stat">
-              <div class="statLabel">#</div>
-              <div class="statValue" id="statPosition">—</div>
-            </div>
+        <div class="stats statsRow" aria-label="Saved deck">
+          <div class="stat">
+            <div class="statLabel">Saved</div>
+            <div class="statValue" id="statTotal">—</div>
           </div>
-          <nav class="phraseToolbar-nav" data-site-nav data-site-nav-current="saved" aria-label="Navigation"></nav>
-          <nav class="phraseToolbar-nav" aria-label="Actions">
-            <a class="btn ghost btnSm phraseToolbar-navBtn" href="./phrases-saved.html">Sent. saved</a>
-            <button class="btn ghost btnSm phraseToolbar-navBtn" id="removeSavedBtn" type="button">Remove</button>
-          </nav>
+          <div class="stat">
+            <div class="statLabel">#</div>
+            <div class="statValue" id="statPosition">—</div>
+          </div>
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
+          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <a class="btn ghost btnSm" href="./saved.html" aria-current="page">Saved deck</a>
+          <a class="btn ghost btnSm" href="./phrases-saved.html">Sent. saved</a>
+          <button class="btn ghost btnSm" id="removeSavedBtn" type="button">Remove</button>
         </div>
       </header>
 
@@ -78,6 +79,5 @@
     <script src="./english-display.js"></script>
     <script src="./saved.js" defer></script>
     <script src="./mobile-deck.js" defer></script>
-      <script src="./site-nav.js" defer></script>
   </body>
 </html>

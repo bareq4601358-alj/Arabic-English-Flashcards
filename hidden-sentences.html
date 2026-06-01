@@ -17,7 +17,23 @@
           <kbd>←</kbd> flip · <kbd>→</kbd> flip then next · <strong>Retrieve</strong> puts this sentence back into your
           main sentence deck.
         </p>
-        <nav class="stats statsRow" data-site-nav data-site-nav-current="hidden" aria-label="Navigation"></nav>
+        <div class="stats statsRow" aria-label="Hidden sentences">
+          <div class="stat">
+            <div class="statLabel">Hidden</div>
+            <div class="statValue" id="statTotal">—</div>
+          </div>
+          <div class="stat">
+            <div class="statLabel">#</div>
+            <div class="statValue" id="statPosition">—</div>
+          </div>
+          <a class="btn ghost btnSm" href="./index.html">Main</a>
+          <a class="btn ghost btnSm" href="./hidden.html">All hidden</a>
+          <a class="btn ghost btnSm" href="./topics.html">Topics</a>
+          <a class="btn ghost btnSm" href="./matching.html">Matching</a>
+          <a class="btn ghost btnSm" href="./phrases.html">Sentences</a>
+          <a class="btn ghost btnSm" href="./writing.html">Writing</a>
+          <button class="btn primary btnSm" id="retrieveBtn" type="button">Retrieve</button>
+        </div>
       </header>
 
       <section class="stage">
@@ -59,6 +75,5 @@
     <script src="./sentence-bank.js" defer></script>
     <script src="./hidden-sentences.js" defer></script>
     <script src="./mobile-deck.js" defer></script>
-      <script src="./site-nav.js" defer></script>
   </body>
 </html>

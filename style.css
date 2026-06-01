@@ -2204,7 +2204,7 @@ body.matchingPage .matchPanel .matchStatValue {
     display: none !important;
   }
 
-  body.writingPage .stats.statsRow {
+  body.writingPage .stats.statsRow:not(.writingStats) {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -2349,6 +2349,18 @@ body.writingPage .writePanel {
   line-height: 1.4;
   letter-spacing: -0.03em;
   color: var(--write-text);
+}
+
+.writePromptText--ar {
+  font-family: "Noto Naskh Arabic", "Geeza Pro", "Arabic Typesetting", serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.writeInput--en {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  text-align: left;
 }
 
 .writeForm {

@@ -3,10 +3,16 @@
   "use strict";
 
   const norm = (s) => String(s ?? "").trim();
-  const params = new URLSearchParams(window.location.search);
-  const topicId = norm(params.get("id"));
-  const groups = Array.isArray(window.TOPIC_GROUPS) ? window.TOPIC_GROUPS : [];
-  const topicDef = groups.find((g) => g.id === topicId);
+
+  function getTopicFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const topicId = norm(params.get("id"));
+    const groups = Array.isArray(window.TOPIC_GROUPS) ? window.TOPIC_GROUPS : [];
+    const topicDef = groups.find((g) => g.id === topicId);
+    return { topicId, topicDef };
+  }
+
+  const { topicId, topicDef } = getTopicFromUrl();
 
   if (!topicDef || !Array.isArray(topicDef.tags) || !topicDef.tags.length) {
     window.location.replace("./topics.html");
@@ -134,7 +140,7 @@
   }
 
   function makeBank() {
-    const base = Array.isArray(WORD_BANK) ? WORD_BANK : [];
+    const base = Array.isArray(window.WORD_BANK) ? window.WORD_BANK : [];
     const custom = loadCustomWords();
     const cleaned = [...base, ...custom]
       .map((w) => ({
@@ -156,9 +162,9 @@
 
   function renderStats() {
     const deck = activeDeck();
-    els.statDeck.textContent = String(deck.length);
-    els.statSaved.textContent = String(loadSavedCards().length);
-    els.statRemoved.textContent = String(removed.size);
+    if (els.statDeck) els.statDeck.textContent = String(deck.length);
+    if (els.statSaved) els.statSaved.textContent = String(loadSavedCards().length);
+    if (els.statRemoved) els.statRemoved.textContent = String(removed.size);
   }
 
   function showSaveToast(message) {
@@ -191,14 +197,14 @@
   }
 
   function showingEnglish() {
-    return els.flashcardInner.classList.contains("isFlipped");
+    return Boolean(els.flashcardInner?.classList.contains("isFlipped"));
   }
 
   function flipFacesOnly() {
-    if (!current) return;
+    if (!current || !els.flashcardInner) return;
     els.flashcardInner.classList.toggle("isFlipped");
     updateStepUi();
-    els.flashcardHit.setAttribute("aria-expanded", String(showingEnglish()));
+    els.flashcardHit?.setAttribute("aria-expanded", String(showingEnglish()));
   }
 
   function updateStepUi() {
@@ -219,34 +225,36 @@
 
   function showCard(word) {
     current = word;
-    els.flashcardInner.classList.remove("isFlipped");
+    if (els.flashcardInner) els.flashcardInner.classList.remove("isFlipped");
     updateStepUi();
 
     if (!word) {
-      els.textAr.textContent = "No cards in this topic (or all hidden).";
-      els.textEnBack.textContent = "—";
-      els.deckTag.textContent = "—";
-      els.flashcardHit.disabled = true;
+      if (els.textAr) els.textAr.textContent = "No cards in this topic (or all hidden).";
+      if (els.textEnBack) els.textEnBack.textContent = "—";
+      if (els.deckTag) els.deckTag.textContent = "—";
+      if (els.flashcardHit) els.flashcardHit.disabled = true;
       return;
     }
-    els.flashcardHit.disabled = false;
-    els.textAr.textContent = word.ar;
-    els.textEnBack.textContent =
-      typeof window.primaryEnglish === "function" ? window.primaryEnglish(word.en) : word.en;
-    els.deckTag.textContent = word.tag;
+    if (els.flashcardHit) els.flashcardHit.disabled = false;
+    if (els.textAr) els.textAr.textContent = word.ar;
+    if (els.textEnBack) {
+      els.textEnBack.textContent =
+        typeof window.primaryEnglish === "function" ? window.primaryEnglish(word.en) : word.en;
+    }
+    if (els.deckTag) els.deckTag.textContent = word.tag;
     try {
-      els.flashcardHit.focus({ preventScroll: true });
+      els.flashcardHit?.focus({ preventScroll: true });
     } catch {
       // ignore
     }
   }
 
   function stepForwardFromRightArrow() {
-    if (!current) return;
+    if (!current || !els.flashcardInner) return;
     if (!els.flashcardInner.classList.contains("isFlipped")) {
       els.flashcardInner.classList.add("isFlipped");
       updateStepUi();
-      els.flashcardHit.setAttribute("aria-expanded", "true");
+      els.flashcardHit?.setAttribute("aria-expanded", "true");
       return;
     }
     showCard(pickWord({ shuffle: false, excludeId: keyOf(current) }) || pickWord({ shuffle: true }));
@@ -291,10 +299,12 @@
     if (els.saveBtn) els.saveBtn.addEventListener("click", saveCurrentToMemoryBank);
     if (els.hideCardBtn) els.hideCardBtn.addEventListener("click", removeCurrentPermanently);
 
-    els.flashcardHit.addEventListener("click", (e) => {
-      e.preventDefault();
-      flipFacesOnly();
-    });
+    if (els.flashcardHit) {
+      els.flashcardHit.addEventListener("click", (e) => {
+        e.preventDefault();
+        flipFacesOnly();
+      });
+    }
 
     window.addEventListener("storage", (e) => {
       if (e.key === STORAGE.removed || e.key === STORAGE.customWords) reloadRemovedFromStorage();
@@ -329,11 +339,35 @@
   }
 
   function start() {
+    if (!els.flashcardHit || !els.flashcardInner || !els.textAr || !els.textEnBack) {
+      console.error("Topic study: flashcard markup is missing on this page.");
+      return;
+    }
     setupEvents();
     refreshAll();
     showCard(pickWord({ shuffle: true }) || activeDeck()[0] || null);
     updateStepUi();
   }
 
-  start();
+  function boot() {
+    if (!Array.isArray(window.TOPIC_GROUPS) || !window.TOPIC_GROUPS.length) {
+      window.setTimeout(boot, 50);
+      return;
+    }
+    const bankReady = () => Array.isArray(window.WORD_BANK) && window.WORD_BANK.length > 0;
+    if (bankReady()) {
+      start();
+      return;
+    }
+    window.addEventListener("wordbankready", () => start(), { once: true });
+    window.setTimeout(() => {
+      if (bankReady()) start();
+    }, 3000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
 })();

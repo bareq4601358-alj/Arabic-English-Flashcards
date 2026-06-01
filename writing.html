@@ -11,9 +11,23 @@
       <header class="header headerCompact">
         <h1 class="title titleCenter">Writing</h1>
         <p class="subtitle subtitleTight desktopOnlyControl">
-          Type each English sentence in Arabic. Two checks per sentence — tailored guidance, then the solution.
+          Read each Arabic sentence and type it in English. Two checks per sentence — hints, then the answer.
         </p>
-        <nav class="stats statsRow" data-site-nav data-site-nav-current="writing" aria-label="Navigation"></nav>
+        <div class="stats statsRow writingStats" aria-label="Writing progress">
+          <div class="stat">
+            <div class="statLabel">Progress</div>
+            <div class="statValue" id="statProgress">—</div>
+          </div>
+          <div class="stat">
+            <div class="statLabel">Correct</div>
+            <div class="statValue" id="statCorrect">0</div>
+          </div>
+        </div>
+        <div class="phraseToolbar-actions">
+          <div class="phraseToolbar-actionsInner" aria-label="Navigation">
+            <nav class="phraseToolbar-nav" data-site-nav data-site-nav-variant="writing" aria-label="Study modes"></nav>
+          </div>
+        </div>
       </header>
 
       <section class="stage">
@@ -42,20 +56,24 @@
           </header>
 
           <div class="writePromptCard">
-            <span class="writePromptLabel">Translate</span>
-            <blockquote class="writePromptText" id="promptEn">Loading…</blockquote>
+            <span class="writePromptLabel">Translate to English</span>
+            <blockquote class="writePromptText writePromptText--ar" id="promptAr" lang="ar" dir="rtl">
+              Loading…
+            </blockquote>
           </div>
 
           <form class="writeForm" id="writeForm" novalidate>
-            <label class="writeInputLabel" for="answerInput">Arabic</label>
+            <label class="writeInputLabel" for="answerInput">English</label>
             <textarea
               id="answerInput"
-              class="writeInput"
+              class="writeInput writeInput--en"
               rows="3"
-              placeholder="Write the full sentence…"
+              placeholder="Write the English sentence…"
+              lang="en"
+              dir="ltr"
               autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
+              autocapitalize="sentences"
+              spellcheck="true"
               aria-describedby="feedbackBlock"
             ></textarea>
             <div class="writeFormActions">
@@ -92,6 +110,7 @@
     </main>
 
     <script src="./sentence-bank.js" defer></script>
+    <script src="./english-display.js" defer></script>
     <script src="./writing.js" defer></script>
       <script src="./site-nav.js" defer></script>
   </body>

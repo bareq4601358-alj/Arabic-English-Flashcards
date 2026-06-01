@@ -15,7 +15,7 @@
     attemptPills: document.getElementById("attemptPills"),
     stepLabel: document.getElementById("stepLabel"),
     sentenceTag: document.getElementById("sentenceTag"),
-    promptEn: document.getElementById("promptEn"),
+    promptAr: document.getElementById("promptAr"),
     writeForm: document.getElementById("writeForm"),
     answerInput: document.getElementById("answerInput"),
     submitBtn: document.getElementById("submitBtn"),
@@ -111,10 +111,14 @@
       .trim();
   }
 
-  function answersMatch(userText, correctEs) {
+  function answersMatch(userText, correctEn) {
     const u = normalizeAnswer(userText);
-    const c = normalizeAnswer(correctEs);
+    const c = normalizeAnswer(correctEn);
     return Boolean(u && c && u === c);
+  }
+
+  function displayEnglish(en) {
+    return typeof window.primaryEnglish === "function" ? window.primaryEnglish(en) : en;
   }
 
   function tokenize(text) {
@@ -157,9 +161,9 @@
     return prev[n];
   }
 
-  function answerSimilarity(userText, correctEs) {
+  function answerSimilarity(userText, correctEn) {
     const u = normalizeAnswer(userText);
-    const c = normalizeAnswer(correctEs);
+    const c = normalizeAnswer(correctEn);
     if (!u || !c) return 0;
     const d = levenshtein(u, c);
     return 1 - d / Math.max(u.length, c.length);
@@ -207,10 +211,10 @@
    * Strong hints for the second try — scaffold, correct words, missing tail.
    * @returns {{ lead: string, items: string[] }}
    */
-  function buildHint(userText, correctEs) {
+  function buildHint(userText, correctEn) {
     const userWords = tokenize(userText);
-    const correctWords = tokenize(correctEs);
-    const sim = answerSimilarity(userText, correctEs);
+    const correctWords = tokenize(correctEn);
+    const sim = answerSimilarity(userText, correctEn);
     const prefixLen = prefixMatchLen(userWords, correctWords);
     const items = [];
 
@@ -253,10 +257,8 @@
       }
     }
 
-    if (items.length < 4 && /^¿/.test(correctEs) && !norm(userText).startsWith("¿")) {
-      items.push(`Question — start with: ${correctWords.slice(0, Math.min(3, correctWords.length)).join(" ")}`);
-    } else if (items.length < 4 && /^¡/.test(correctEs) && !norm(userText).startsWith("¡")) {
-      items.push(`Exclamation — start with: ${correctWords.slice(0, Math.min(3, correctWords.length)).join(" ")}`);
+    if (items.length < 4 && /\?$/.test(norm(correctEn)) && !/\?/.test(norm(userText))) {
+      items.push(`Question — include a question mark. Start with: ${correctWords.slice(0, Math.min(4, correctWords.length)).join(" ")}`);
     }
 
     if (items.length < 4 && sim < 0.35 && correctWords.length >= 2) {
@@ -417,7 +419,7 @@
     if (!row) {
       els.stepLabel.textContent = "Done";
       els.sentenceTag.textContent = "—";
-      els.promptEn.textContent = "No sentences in your deck. Add sentences on the Sentences page or restore hidden ones.";
+      els.promptAr.textContent = "لا توجد جمل. أضف جملاً من صفحة الجمل أو استرجع المخفية.";
       els.answerInput.value = "";
       els.answerInput.disabled = true;
       els.submitBtn.disabled = true;
@@ -427,7 +429,7 @@
 
     els.stepLabel.textContent = `Sentence ${index + 1}`;
     els.sentenceTag.textContent = row.tag;
-    els.promptEn.textContent = row.en;
+    els.promptAr.textContent = row.ar;
     els.answerInput.value = "";
     renderStats();
     window.requestAnimationFrame(() => {
@@ -458,7 +460,7 @@
     wrongAttempts = 1;
     updateAttemptPills();
     nudgeInput();
-    const hint = buildHint(userText, row.ar);
+    const hint = buildHint(userText, displayEnglish(row.en));
     setFeedback("hint", hint.lead, "", "", hint.items, { showReveal: true });
     renderStats();
     els.answerInput.focus();
@@ -476,7 +478,9 @@
     nudgeInput();
     locked = true;
     setInputEnabled(false);
-    setFeedback("answer", row.ar, "Press Continue for the next sentence.", "", null, { answerOnly: true });
+    setFeedback("answer", displayEnglish(row.en), "Press Continue for the next sentence.", "", null, {
+      answerOnly: true,
+    });
     els.continueBtn.hidden = false;
     renderStats();
   }
@@ -487,12 +491,12 @@
 
     const user = els.answerInput.value;
     if (!norm(user)) {
-      setFeedback("hint", "Enter your translation", "Type the Arabic sentence, then press Check.", "", null);
+      setFeedback("hint", "Enter your translation", "Type the English sentence, then press Check.", "", null);
       els.answerInput.focus();
       return;
     }
 
-    if (answersMatch(user, row.ar)) {
+    if (answersMatch(user, displayEnglish(row.en))) {
       handleCorrect();
       return;
     }
